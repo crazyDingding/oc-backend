@@ -1,0 +1,7 @@
+openai
+torch
+transformers
+diffusers
+streamlit
+pydub
+opencv-python
