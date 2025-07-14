@@ -20,7 +20,7 @@ The output is a playable video link that can be streamed or embedded into web ap
 ## 🎥 Demo Video Generation
 
 Below is a demonstration of a fully automated video generated using the VisionStory.generate_video_from_prompt() pipeline:
-👉 **[Click here to watch](https://github.com/crazyDingding/oc-backend/raw/main/assets/audios/jessica_20250418_210509.mp3)**  
+👉 **[Click here to watch](https://github.com/crazyDingding/oc-backend/raw/main/assets/vedio/222sample_vedio.mp4)**  
 The vedio will stream directly in your browser or download depending on your device and browser settings.
 
 ---
