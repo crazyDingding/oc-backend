@@ -378,6 +378,55 @@ async def generate_text_api(
     return {
         "result": result
     }
+# ======================= 视频生成接口 =======================
+class VideoGenerationRequest(BaseModel):
+    dialogues: List[Dict[str, str]]
+    description: List[Dict[str, str]]
+    avatar_name: Optional[str] = "Custom Avatar"
+    # 可选参数，用于自定义视频生成
+    voice_id: Optional[str] = "Alice"
+    model_id: Optional[str] = "vs_talk_v1"
+    aspect_ratio: Optional[str] = "9:16"
+    resolution: Optional[str] = "720p"
+
+@app.post("/video/generate")
+def generate_video(request: VideoGenerationRequest):
+    """
+    统一的视频生成接口
+    自动完成：文本生成 -> 图片生成 -> 上传头像 -> 生成视频 -> 轮询状态 -> 返回结果
+    """
+    try:
+        visionstory = VisionStory()
+        
+        # 使用自定义参数或默认参数
+        voice_id = request.voice_id or "Alice"
+        model_id = request.model_id or "vs_talk_v1"
+        aspect_ratio = request.aspect_ratio or "9:16"
+        resolution = request.resolution or "720p"
+        
+        # 执行完整的视频生成流程（包括轮询等待完成）
+        result = visionstory.generate_video_from_prompt(
+            dialogues=request.dialogues,
+            description=request.description,
+            avatar_name=request.avatar_name
+        )
+        
+        return {
+            "success": True,
+            "video_url": result.get("video_url"),
+            "avatar_id": result.get("avatar_id"),
+            "text": result.get("text"),
+            "image_path": result.get("image_path"),
+            "status": "completed",
+            "message": "Video generated successfully"
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "error": str(e),
+            "status": "failed",
+            "message": "Failed to generate video"
+        }
 
 # ======================= 用户认证接口 =======================
 @app.post("/register")
