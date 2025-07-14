@@ -1,36 +1,26 @@
-🎬 Videoer Module
-The Videoer module is responsible for generating character videos by combining image, audio, and text using the VisionStory API. It orchestrates multi-modal content—appearance, voice, and language—into a unified talking-head animation, allowing characters to “come to life” through video.
+# 🗣️ Voicer Module
 
-🧠 Video Generation Pipeline
-Given a structured character description and dialogue history:
+The **Voicer** module is responsible for converting generated text responses into spoken audio using AI-powered text-to-speech (TTS) techniques. It enables characters to "speak" with personalized voice profiles.
 
-The system first generates a natural language response via a text generator (default: Kimi).
+---
 
-Then, it uses a text-to-image engine (default: Stable Diffusion) to generate a character avatar.
+## 🎧 Voice Synthesis Demo
 
-The generated image is uploaded to VisionStory as a character avatar.
+Below is a demonstration of the synthesized speech for the character `Jessica`:
 
-Finally, the system uses the avatar and generated text to synthesize a talking video through the VisionStory /video API.
+👉 **[Click here to listen](https://github.com/crazyDingding/oc-backend/raw/main/assets/audios/jessica_20250418_210509.mp3)**  
+The audio will stream directly in your browser or download depending on your device and browser settings.
 
-The output is a playable video link that can be streamed or embedded into web apps, games, or social platforms.
+---
 
-🎥 Demo Video Generation
-Below is a demonstration of a fully automated video generated using the VisionStory.generate_video_from_prompt() pipeline:
+## 📁 File Structure
 
-👉 Click here to watch
-
-
-
-The result showcases a female character ("Airi") speaking based on a one-line dialogue input.
-
-⚙️ Features
-🔄 End-to-end automation: From text to avatar to video.
-
-🧩 Modular design: Replaceable text generator and image engine.
-
-🎭 Character-aware: Avatar and voice linked to structured description (Name, Personality, Appearance).
-
-🕘 Real-time polling: The system automatically waits for video rendering to complete.
-
-🎨 Configurable: Customize voice_id, model_id, aspect_ratio, and resolution.
-
+```bash
+modules/
+└── voicer/
+├── init.py
+├── generator.py      # Voice synthesis logic
+├── router.py         # FastAPI routes for audio generation
+└── README.md         # Module documentation (you are here)
+```
+---
